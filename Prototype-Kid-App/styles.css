@@ -1,0 +1,469 @@
+/* Nordic Loyalty App — original design system */
+
+:root {
+  --paper: #FBF8F2;
+  --paper-2: #F4EEE3;
+  --paper-3: #EBE3D4;
+  --ink: #1F1B16;
+  --ink-2: #4A433A;
+  --ink-3: #8A8275;
+  --ink-4: #B8AE9D;
+  --line: rgba(31, 27, 22, 0.08);
+  --line-2: rgba(31, 27, 22, 0.14);
+  --clay: #B0654E;
+  --clay-soft: #E8C5B5;
+  --clay-bg: #F2DBCC;
+  --sage: #7A8275;
+  --sage-soft: #C8CEC2;
+  --gold: #9C8259;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Geist', 'Inter', -apple-system, system-ui, sans-serif;
+  font-feature-settings: 'ss01', 'cv11';
+  color: var(--ink);
+  background: #2a2620;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.serif {
+  font-family: 'Newsreader', 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  font-optical-sizing: auto;
+}
+
+.mono {
+  font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+  font-feature-settings: 'ss02';
+}
+
+.eyebrow {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* Scroll surface */
+.scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.scroll::-webkit-scrollbar { display: none; }
+
+/* Header */
+.app-header {
+  padding: 82px 22px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--paper);
+  position: relative;
+  z-index: 5;
+}
+
+.brand {
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+.brand-mark {
+  display: inline-block;
+  width: 5px; height: 5px;
+  background: var(--clay);
+  border-radius: 50%;
+  transform: translateY(-2px);
+}
+
+.icon-btn {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.icon-btn .dot {
+  position: absolute;
+  top: 7px; right: 8px;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--clay);
+}
+
+/* Image placeholder — striped fallback OR real bg image */
+.placeholder {
+  position: relative;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      var(--paper-2) 0px,
+      var(--paper-2) 6px,
+      var(--paper-3) 6px,
+      var(--paper-3) 12px
+    );
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px;
+  border: 1px solid var(--line);
+  background-size: cover;
+  background-position: center;
+}
+.photo {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.placeholder.clay {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      #ECCFBE 0px, #ECCFBE 6px,
+      #E0BCA7 6px, #E0BCA7 12px
+    );
+}
+.placeholder.sage {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      #C9CFC2 0px, #C9CFC2 6px,
+      #B8C0AE 6px, #B8C0AE 12px
+    );
+}
+.placeholder.ink {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      #2C2820 0px, #2C2820 6px,
+      #211D17 6px, #211D17 12px
+    );
+}
+.placeholder .label {
+  font-family: 'Geist Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(31,27,22,0.55);
+  background: rgba(251, 248, 242, 0.85);
+  padding: 4px 7px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+.placeholder.ink .label {
+  color: rgba(251, 248, 242, 0.7);
+  background: rgba(31,27,22,0.55);
+}
+
+/* Tab bar */
+.tabbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 12px 26px;
+  background: rgba(251, 248, 242, 0.92);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--line);
+  position: relative;
+  z-index: 10;
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ink-3);
+  font-family: 'Geist Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+.tab.active { color: var(--ink); }
+.tab svg { width: 22px; height: 22px; stroke-width: 1.4; }
+.tab .indicator {
+  position: absolute;
+  top: 0;
+  height: 2px;
+  width: 28px;
+  background: var(--ink);
+  border-radius: 1px;
+  transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card primitive */
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+/* Section heading */
+.section {
+  padding: 0 22px;
+  margin-top: 28px;
+}
+
+/* On Home (editorial mode) sections shouldn't have horizontal padding constraints */
+.screen > div[style*="background"] { width: 100%; }
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  gap: 12px;
+}
+.section-title {
+  font-family: 'Newsreader', serif;
+  font-size: 26px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-weight: 400;
+}
+.section-title em {
+  font-style: italic;
+  color: var(--clay);
+}
+.section-link {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Pill */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  background: var(--paper);
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.pill.dark {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.pill.clay {
+  background: var(--clay);
+  color: var(--paper);
+  border-color: var(--clay);
+}
+
+/* Number tabular */
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* Slide-in screen */
+.screen {
+  animation: screen-in 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@keyframes screen-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Rotating chip strip */
+.chip-strip {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 0 22px;
+  scrollbar-width: none;
+}
+.chip-strip::-webkit-scrollbar { display: none; }
+
+/* Progress arc bar */
+.tier-track {
+  height: 6px;
+  background: var(--paper-3);
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+.tier-fill {
+  height: 100%;
+  background: var(--ink);
+  border-radius: 3px;
+}
+
+/* Member card */
+.member-card {
+  position: relative;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 22px;
+  padding: 22px 22px 20px;
+  overflow: hidden;
+}
+.member-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 80% at 100% 0%, rgba(194, 106, 79, 0.35), transparent 50%),
+    radial-gradient(80% 60% at 0% 100%, rgba(176, 138, 78, 0.18), transparent 60%);
+  pointer-events: none;
+}
+.member-card > * { position: relative; }
+
+/* Density variants */
+.density-compact .section { margin-top: 20px; }
+.density-comfy .section { margin-top: 36px; }
+
+/* Toast */
+.toast {
+  position: absolute;
+  left: 50%;
+  bottom: 96px;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-family: 'Geist', system-ui, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  z-index: 100;
+  animation: toast-in 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+  white-space: nowrap;
+  max-width: 90%;
+}
+@keyframes toast-in {
+  from { opacity: 0; transform: translate(-50%, 8px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* Button press feedback */
+button { transition: transform 0.12s ease, background 0.18s ease, opacity 0.18s ease; }
+button:active { transform: scale(0.96); }
+.icon-btn:hover { background: var(--paper-2); }
+
+/* Heart fav button */
+.fav-btn {
+  position: absolute;
+  top: 8px; right: 8px;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: rgba(251, 248, 242, 0.92);
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+.fav-btn svg { width: 14px; height: 14px; }
+
+/* Primary button */
+.btn-primary {
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 500;
+}
+.btn-primary:hover { background: var(--clay); }
+
+/* Display serif var fallback */
+.serif, .section-title, .brand {
+  font-family: var(--display-serif, 'Newsreader', Georgia, serif);
+}
+/* Toggle switch */
+.switch {
+  width: 38px;
+  height: 22px;
+  border-radius: 11px;
+  background: var(--paper-3);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  transition: transform 0.2s;
+}
+.switch.on { background: var(--ink); }
+.switch.on::after { transform: translateX(16px); }
+
+/* Overlay (full-screen modals: cart, checkout, category, product) */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  animation: overlay-in 0.32s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@keyframes overlay-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.overlay-head {
+  display: flex;
+  align-items: center;
+  padding: 82px 16px 12px;
+  gap: 10px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
